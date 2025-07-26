@@ -2,10 +2,21 @@
 
 import { motion } from 'framer-motion';
 import { PageTransition } from '@/components/layout/PageTransition';
-import { useEffect, useState } from 'react';
+import { ComponentType, useEffect, useState } from 'react';
 import { DrizzleIcon } from '@/components/ui/Icons';
+import Image from 'next/image';
 
-const skills = [
+interface IconComponentProps {
+	className?: string;
+}
+
+interface SkillTypes {
+	name: string;
+	icon: string;
+	component?: ComponentType<IconComponentProps>;
+}
+
+const skills: SkillTypes[] = [
 	{ name: 'React', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg' },
 	{ name: 'TypeScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg' },
 	{ name: 'Next.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg' },
@@ -20,7 +31,7 @@ const skills = [
 	{ name: 'HTML', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg' },
 ];
 
-const FloatingSkill = ({ skill, index }: { skill: any; index: number }) => {
+const FloatingSkill = ({ skill }: { skill: SkillTypes; index: number }) => {
 	const [mounted, setMounted] = useState(false);
 
 	useEffect(() => {
@@ -61,7 +72,7 @@ const FloatingSkill = ({ skill, index }: { skill: any; index: number }) => {
 				</svg>
 			);
 		} else {
-			return <img src={skill.icon} alt={skill.name} className='w-full h-full object-contain filter brightness-75' />;
+			return <Image src={skill.icon} alt={skill.name} width={32} height={32} className='object-contain filter brightness-75' />;
 		}
 	};
 

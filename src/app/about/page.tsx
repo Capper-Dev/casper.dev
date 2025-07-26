@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { Code2, Heart, Lightbulb } from 'lucide-react';
 import { PageTransition } from '@/components/layout/PageTransition';
+import Image from 'next/image';
 
 const containerVariants = {
 	hidden: { opacity: 0 },
@@ -58,7 +59,7 @@ export default function AboutPage() {
 							whileHover={{ scale: 1.02 }}
 						>
 							<Lightbulb className='w-5 h-5 text-neutral-300 mt-0.5 flex-shrink-0' />
-							<p className='text-neutral-300'>I'm completely self-taught, learning through online resources and lots of trial and error. This path taught me to be resourceful and persistent.</p>
+							<p className='text-neutral-300'>I&apos;m completely self-taught, learning through online resources and lots of trial and error. This path taught me to be resourceful and persistent.</p>
 						</motion.div>
 
 						<motion.div
@@ -69,8 +70,8 @@ export default function AboutPage() {
 						>
 							<Heart className='w-5 h-5 text-neutral-300 mt-0.5 flex-shrink-0' />
 							<p className='text-neutral-300'>
-								Currently focused on modern web development with React, TypeScript, and Next.js. I love the entire process—from planning to deployment. There's something magical about turning ideas
-								into working applications.
+								Currently focused on modern web development with React, TypeScript, and Next.js. I love the entire process—from planning to deployment. There&apos;s something magical about turning
+								ideas into working applications.
 							</p>
 						</motion.div>
 					</motion.div>
@@ -87,7 +88,7 @@ export default function AboutPage() {
 									className='p-3 bg-neutral-900/50 border border-neutral-800 rounded-lg text-center text-xs hover:border-neutral-700 transition-colors group cursor-default'
 								>
 									<div className='mb-2 group-hover:scale-110 transition-transform duration-300 flex justify-center'>
-										<img src={tech.icon} alt={tech.name} className='w-8 h-8 object-contain' />
+										<Image src={tech.icon} alt={tech.name} width={32} height={32} className='object-contain' />
 									</div>
 									<span className='text-neutral-300'>{tech.name}</span>
 								</motion.div>

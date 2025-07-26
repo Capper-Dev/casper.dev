@@ -51,7 +51,7 @@ export default function ContactPage() {
 				<motion.div className='space-y-8' variants={containerVariants} initial='hidden' animate='visible'>
 					<motion.div className='space-y-2 text-center' variants={itemVariants} transition={{ duration: 0.6, ease: 'easeOut' }}>
 						<h1 className='text-3xl font-bold bg-gradient-to-r from-white to-neutral-300 bg-clip-text text-transparent'>Get In Touch</h1>
-						<p className='text-neutral-400'>I'm always interested in new opportunities and conversations</p>
+						<p className='text-neutral-400'>I&apos;m always interested in new opportunities and conversations</p>
 					</motion.div>
 
 					<motion.div className='space-y-3' variants={containerVariants}>
@@ -96,7 +96,7 @@ export default function ContactPage() {
 							<div>
 								<h3 className='font-semibold mb-2'>Currently</h3>
 								<p className='text-neutral-400 text-sm leading-relaxed'>
-									Open to interesting projects, collaborations, and opportunities to learn. Whether you want to chat about code, discuss a project idea, or just say hi— I'd love to hear from you!
+									Open to interesting projects, collaborations, and opportunities to learn. Whether you want to chat about code, discuss a project idea, or just say hi— I&apos;d love to hear from you!
 								</p>
 							</div>
 						</div>

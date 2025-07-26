@@ -55,7 +55,7 @@ export default function HomePage() {
 							animate={{ opacity: 1 }}
 							transition={{ duration: 0.8, ease: 'easeOut', delay: 0.8 }}
 						>
-							Hi, I'm a self-taught hobby programmer who loves building modern web applications with React, TypeScript, and Next.js. Welcome to my little corner of the internet.
+							Hi, I&apos;m a self-taught hobby programmer who loves building modern web applications with React, TypeScript, and Next.js. Welcome to my little corner of the internet.
 						</motion.p>
 					</motion.div>
 

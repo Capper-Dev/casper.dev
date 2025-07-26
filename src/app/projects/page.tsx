@@ -87,7 +87,7 @@ export default function ProjectsPage() {
 				<motion.div className='space-y-6' variants={containerVariants} initial='hidden' animate='visible'>
 					<motion.div className='space-y-2 text-center' variants={itemVariants} transition={{ duration: 0.6, ease: 'easeOut' }}>
 						<h1 className='text-3xl font-bold bg-gradient-to-r from-white to-neutral-300 bg-clip-text text-transparent'>Projects</h1>
-						<p className='text-neutral-400'>A few things I've built while learning and experimenting</p>
+						<p className='text-neutral-400'>A few things I&apos;ve built while learning and experimenting</p>
 					</motion.div>
 
 					<motion.div className='space-y-6' variants={containerVariants}>
