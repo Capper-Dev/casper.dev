@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
 	return (
-		<html lang='en' className='scroll-smooth'>
+		<html lang='en'data-scroll-behavior="smooth">
 			<body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black text-white h-screen overflow-hidden`}>
 				<div className='fixed inset-0 bg-gradient-to-br from-neutral-900 via-black to-neutral-900' />
 

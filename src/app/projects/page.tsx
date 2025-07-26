@@ -13,14 +13,14 @@ const projects = [
 		description: 'This very website! Built with Next.js 15 and modern animations.',
 		tech: ['Next.js', 'TypeScript', 'Tailwind', 'Framer Motion'],
 		github: 'https://github.com',
-		image: 'https://i.ibb.co/RT3tBSsv/Sk-rmbillede-2025-07-26-235906.png',
+		image: '/images/portfolio.webp',
 	},
 	{
 		title: 'Odessa Website',
 		description: 'A website for a FiveM server, built with Next.js and tRPC. Private repo, due to made for customer.',
 		tech: ['Next.js', 'TypeScript', 'tRPC', 'Supabase', 'Tailwind'],
 		github: 'https://github.com',
-		image: 'https://i.ibb.co/qMbLK0HJ/Sk-rmbillede-2025-07-27-000024.png',
+		image: '/images/odwebsite.webp',
 		demo: 'https://odessarp.com',
 	},
 ];
@@ -59,7 +59,7 @@ function ProjectImage({ project }: { project: { title: string; image?: string } 
 			<Image
 				src={project.image}
 				alt={`${project.title} preview`}
-				fill
+				fill={true}
 				className={`
 					transition-all duration-500 group-hover:scale-105
 					${imageLoaded ? 'opacity-100' : 'opacity-0'}
@@ -69,8 +69,8 @@ function ProjectImage({ project }: { project: { title: string; image?: string } 
 					objectPosition: 'center',
 				}}
 				sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px'
-				quality={90}
-				priority={false}
+				quality={80}
+				priority={true}
 				onLoad={() => setImageLoaded(true)}
 				onError={() => setImageError(true)}
 			/>
