@@ -21,25 +21,25 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
 	return (
-		<html lang='en'data-scroll-behavior="smooth">
-			<body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black text-white h-screen overflow-hidden`}>
-				<div className='fixed inset-0 bg-gradient-to-br from-neutral-900 via-black to-neutral-900' />
+		<html lang='en' data-scroll-behavior='smooth'>
+			<body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black text-white`}>
+				<div className='fixed inset-0 bg-gradient-to-br from-neutral-900 via-black to-neutral-900 -z-10' />
 
 				<div
-					className='fixed inset-0 opacity-20'
+					className='fixed inset-0 opacity-20 -z-10'
 					style={{
 						backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.1) 1px, transparent 0)`,
 						backgroundSize: '40px 40px',
 					}}
 				/>
 
-				<div className='fixed top-1/4 left-1/4 w-2 h-2 bg-white/20 rounded-full animate-pulse blur-sm' />
-				<div className='fixed top-1/3 right-1/3 w-3 h-3 bg-neutral-300/20 rounded-full animate-bounce blur-sm' style={{ animationDuration: '4s' }} />
-				<div className='fixed bottom-1/3 left-1/3 w-1 h-1 bg-white/30 rounded-full animate-ping blur-sm' style={{ animationDuration: '6s' }} />
-				<div className='fixed top-2/3 right-1/4 w-1.5 h-1.5 bg-neutral-400/20 rounded-full animate-pulse blur-sm' style={{ animationDuration: '5s' }} />
+				<div className='fixed top-1/4 left-1/4 w-2 h-2 bg-white/20 rounded-full animate-pulse blur-sm -z-10' />
+				<div className='fixed top-1/3 right-1/3 w-3 h-3 bg-neutral-300/20 rounded-full animate-bounce blur-sm -z-10' style={{ animationDuration: '4s' }} />
+				<div className='fixed bottom-1/3 left-1/3 w-1 h-1 bg-white/30 rounded-full animate-ping blur-sm -z-10' style={{ animationDuration: '6s' }} />
+				<div className='fixed top-2/3 right-1/4 w-1.5 h-1.5 bg-neutral-400/20 rounded-full animate-pulse blur-sm -z-10' style={{ animationDuration: '5s' }} />
 
 				<Footer />
-				<main className='relative z-10 h-screen pt-20'>{children}</main>
+				<main className='relative z-10 pb-32'>{children}</main>
 			</body>
 		</html>
 	);

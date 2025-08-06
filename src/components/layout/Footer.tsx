@@ -3,13 +3,14 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { LayoutGrid, Mail, User, Code, House } from 'lucide-react';
+import { LayoutGrid, Mail, User, Code, House, BookOpen } from 'lucide-react';
 
 const navItems = [
 	{ name: 'Home', href: '/', icon: House },
 	{ name: 'About', href: '/about', icon: User },
 	{ name: 'Experience', href: '/experience', icon: Code },
 	{ name: 'Projects', href: '/projects', icon: LayoutGrid },
+	{ name: 'Blog', href: '/blog', icon: BookOpen },
 	{ name: 'Contact', href: '/contact', icon: Mail },
 ];
 
@@ -20,7 +21,7 @@ export function Footer() {
 		<motion.nav initial={{ y: 100, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.6, ease: 'easeOut', delay: 0.2 }} className='fixed bottom-8 left-1/2 -translate-x-1/2 z-50'>
 			<div className='flex gap-2 p-2 bg-black/40 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl shadow-black/50'>
 				{navItems.map((item, index) => {
-					const isActive = pathname === item.href;
+					const isActive = pathname === item.href || (item.href === '/blog' && pathname.startsWith('/blog'));
 					const Icon = item.icon;
 
 					return (
