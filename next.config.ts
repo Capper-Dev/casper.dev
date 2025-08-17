@@ -9,9 +9,6 @@ const nextConfig: NextConfig = {
   compress: true,
   poweredByHeader: false,
   reactStrictMode: true,
-  experimental: {
-    optimizeCss: true,
-  },
 };
 
 export default nextConfig;

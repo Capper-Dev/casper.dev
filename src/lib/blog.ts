@@ -9,7 +9,7 @@ export interface BlogPost {
 	content: string;
 }
 
-export const blogPosts: BlogPost[] = [
+const blogPosts: BlogPost[] = [
 	{
 		slug: 'fivem-lua-deobfuscation',
 		title: 'Bypassing FiveM\'s Lua Obfuscation: A Complete Technical Analysis',
