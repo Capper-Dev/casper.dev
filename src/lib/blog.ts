@@ -12,25 +12,28 @@ export interface BlogPost {
 const blogPosts: BlogPost[] = [
 	{
 		slug: 'fivem-lua-deobfuscation',
-		title: 'Bypassing FiveM\'s Lua Obfuscation: A Complete Technical Analysis',
-		description: 'A deep dive into FiveM\'s encryption architecture, how I reverse-engineered the protection system, and built automated tools to decrypt maps, clothing, and vehicle resources.',
+		title: 'Bypassing FiveM\'s Protection Systems: 3D Assets vs Lua Scripts',
+		description: 'A comprehensive analysis of FiveM\'s dual protection systems - discovering publicly available tools that bypass ChaCha20 encryption for 3D assets and developing my own automated bytecode dumping system for Lua scripts.',
 		date: '2025-08-06',
-		readTime: '12 min read',
+		readTime: '15 min read',
 		category: 'Security',
-		tags: ['FiveM', 'Reverse Engineering', 'Lua', 'Deobfuscation', 'ChaCha20', 'Cryptography'],
-		content: `
-# Bypassing FiveM's Lua Obfuscation: A Complete Technical Analysis
+		tags: ['FiveM', 'Reverse Engineering', 'Lua', 'ChaCha20', 'Cryptography', 'Bytecode'],
+		content: `# Bypassing FiveM's Protection Systems: 3D Assets vs Lua Scripts
 
 ## Introduction
 
-During my exploration of FiveM server security, I discovered a significant vulnerability in how protected Lua scripts are handled. What started as curiosity about server-side script protection led to completely reverse-engineering FiveM's encryption system and building automated tools that can decrypt any protected resource - including maps, clothing, and vehicles.
+During my exploration of FiveM server security, I discovered that CFX.re employs two completely different protection systems depending on the resource type. This research reveals how both systems can be bypassed - and more importantly, how easily accessible these exploits already are in the community.
 
-## The Encryption Architecture
+## Part 1: 3D Asset Encryption (Maps, Vehicles, Clothing) - Publicly Available Exploits
 
-FiveM uses a sophisticated multi-layer encryption system for their escrow protection:
+While researching FiveM's security, I discovered that tools to bypass their sophisticated ChaCha20 encryption for 3D assets are already freely available on public forums.
 
-### Layer 1: Master Key Encryption (ChaCha20)
-All .fxap files begin with a hardcoded master key encryption using ChaCha20:
+### The Encryption Architecture
+
+FiveM uses a sophisticated multi-layer encryption system for their escrow-protected 3D assets stored in .fxap files.
+
+**Layer 1: Master Key Encryption (ChaCha20)**
+All .fxap files begin with a hardcoded master key encryption:
 
 \`\`\`python
 MASTER_KEY = [0xb3, 0xcb, 0x2e, 0x04, 0x87, 0x94, 0xd6, 0x73, 
@@ -39,19 +42,19 @@ MASTER_KEY = [0xb3, 0xcb, 0x2e, 0x04, 0x87, 0x94, 0xd6, 0x73,
               0xf9, 0x40, 0x9d, 0x48, 0x37, 0xb9, 0x38, 0xfb]
 \`\`\`
 
-### Layer 2: Resource-Specific Encryption
+**Layer 2: Resource-Specific Encryption**
 After the master key decryption, each resource has a unique key obtained through FiveM's keymaster API system.
 
 ### File Structure Analysis
-Each encrypted file follows this structure:
+Each encrypted .fxap file follows this structure:
 - **Bytes 0-4**: FXAP signature
 - **Bytes 0x4a-0x56**: First ChaCha20 IV (12 bytes)
 - **Bytes 0x56+**: Encrypted content
 
-## The Complete Exploitation Process
+### The Public Exploit Process
 
-### Step 1: Resource ID Extraction
-The resource ID is embedded within the first decryption layer:
+**Step 1: Resource ID Extraction**
+The publicly available tool extracts resource IDs from the first decryption layer:
 
 \`\`\`python
 iv = file[0x4a:0x4a + 0xc]
@@ -60,8 +63,8 @@ decrypted = cipher.decrypt(file[0x56:])
 resource_id = int.from_bytes(decrypted[0x4a:0x4a + 4], byteorder="big")
 \`\`\`
 
-### Step 2: Grant Token Acquisition
-Using server keys, the system queries FiveM's keymaster API to retrieve JWT tokens containing resource grants:
+**Step 2: Grant Token Acquisition**
+Using server keys, the system queries FiveM's keymaster API:
 
 \`\`\`python
 url = f"https://keymaster.fivem.net/api/validate/{server_key}"
@@ -70,139 +73,187 @@ payload = self._decode_jwt(grants_token)
 resource_keys = payload.get("grants", {})
 \`\`\`
 
-### Step 3: Double Decryption Process
-The actual content requires two sequential ChaCha20 decryptions:
+**Step 3: Double Decryption Process**
+The tool performs two sequential ChaCha20 decryptions to extract the assets.
 
-1. **First decryption**: Using the master key to reveal the structure
-2. **Second decryption**: Using the resource-specific key with a different IV
+### What This Means for Security
 
-\`\`\`python
-# First round with master key
-cipher = ChaCha20.new(key=bytes(MASTER_KEY), nonce=iv)
-first_round = cipher.decrypt(encrypted)
+The fact that I found a complete, working Python toolkit on a public forum demonstrates:
 
-# Extract the real IV for second round
-real_iv = first_round[:0x5c][-16:][-12:]
-content = first_round[0x5c:]
+- **Widespread Knowledge**: This vulnerability is already well-known in certain communities
+- **Easy Access**: No advanced skills required - just download and run
+- **Complete Automation**: Batch processing of entire resource folders
+- **Active Usage**: Tools are maintained and updated by the community
 
-# Second round with resource key
-cipher = ChaCha20.new(key=bytes.fromhex(resource_key), nonce=real_iv)
-decrypted_content = cipher.decrypt(content)
+**Affected Assets:**
+- Maps and MLOs (interior designs)
+- Custom vehicles and modifications  
+- Clothing and fashion assets
+- Any 3D content protected via .fxap files
+
+## Part 2: Lua Script Protection - My Custom Decompilation System
+
+Unlike the 3D assets where tools already existed, I developed my own automated system for bypassing Lua script protection.
+
+### Lua Protection Architecture
+
+FiveM protects Lua scripts through:
+1. **Bytecode Compilation**: Scripts are compiled to Lua 5.4 bytecode
+2. **Runtime Loading**: Bytecode is executed directly by the FiveM runtime
+3. **Obfuscation**: Variable names and logic flow are obscured
+
+### My Automated Decompilation Solution
+
+I created a complete batch automation system using:
+- **Modified FXServer**: Custom build with bytecode dumping capability
+- **Automated Configuration**: Dynamic server.cfg generation
+- **Resource Management**: Automatic file copying and setup
+- **Decompilation Pipeline**: Java-based unluac54 integration
+
+### The Decompilation Process
+
+**Step 1: Environment Setup**
+My batch script automatically configures the environment:
+
+\`\`\`batch
+echo [INFO] Setting up directories...
+mkdir server\\resources\\dumpresource
+mkdir C:\\turboh
+mkdir output
 \`\`\`
 
-## Automated Decryption Tool
+**Step 2: Server Configuration**
+Dynamic generation of server.cfg with minimal resources:
 
-I built a complete Python toolkit that automates this entire process:
-
-### Core Features
-- **Automatic resource detection**: Supports maps (.ymap, .ytyp), clothing, vehicles, and scripts
-- **Batch processing**: Decrypt entire folders of resources automatically
-- **Grant caching**: Stores resource keys locally to avoid repeated API calls
-- **Watermarking**: Adds identification to decrypted files
-
-### Usage Example
-\`\`\`bash
-# Load server key and fetch all grants
-python escrow.py -s -k cfxk_1Gqh4rzXDTC2Q7esH4qaX_4E0TpE
-
-# Decrypt all resources in assets folder
-python auto.py
+\`\`\`batch
+echo endpoint_add_tcp "127.0.0.1:30120"
+echo sv_maxclients 1
+echo sv_licenseKey "%LICENSE_KEY%"
+echo start mapmanager
+echo start spawnmanager  
+echo start fivem
+echo ensure dumpresource
+echo quit 50
 \`\`\`
 
-### Technical Implementation
-The tool handles the complete workflow:
+**Step 3: Bytecode Extraction**
+The modified FXServer dumps bytecode during resource loading:
 
-1. **Resource Discovery**: Scans for .fxap files in resource directories
-2. **Key Management**: Maintains a local database of resource IDs and their corresponding decryption keys
-3. **Batch Decryption**: Processes multiple resource types simultaneously
-4. **Output Management**: Organizes decrypted files maintaining original folder structure
+\`\`\`batch
+start /wait artifacts\\FXServer.exe +exec server.cfg
+\`\`\`
+
+**Step 4: Automated Decompilation**
+Using unluac54 to convert bytecode back to readable Lua:
+
+\`\`\`batch
+java -jar unluac54.jar C:\\turboh\\turboh.luac > output\\decompiled.lua
+\`\`\`
+
+### Key Features of My System
+
+**User-Friendly Interface:**
+- Simple path input (drag and drop support)
+- CFX license key validation
+- Automatic cleanup and error handling
+
+**Bypass Mechanisms:**
+- Uses server configuration to bypass txAdmin restrictions
+- Minimal resource loading for stability
+- Automatic server shutdown after dumping
+
+**Error Handling:**
+- Validates Java installation
+- Checks for required files
+- Provides detailed error messages
 
 ## Security Implications
 
-### Impact Assessment
-This vulnerability affects all FiveM escrow-protected content:
+### The Disturbing Reality
 
-- **Maps and MLOs**: Complete interior/exterior designs can be stolen
-- **Vehicle Modifications**: Custom car models and handling files exposed
-- **Clothing Assets**: Expensive fashion collections become freely available
-- **Script Logic**: Server-side anti-cheat and core functionality revealed
+**3D Asset Protection**: Completely bypassed by publicly available tools that anyone can download and use immediately.
+
+**Lua Script Protection**: Can be defeated with minimal technical knowledge using freely available components.
 
 ### Financial Impact
-Server owners often pay $50-500+ for protected resources, believing they're secure. This tool makes that protection worthless.
+Server owners invest $50-500+ per protected resource, believing their content is secure. Both protection systems can be bypassed with tools that require no advanced technical skills.
 
 ### Real-World Findings
-In decrypted resources, I discovered:
 
-- **Hardcoded Discord webhooks** with server tokens
-- **Database connection strings** in plain text
+In decompiled resources, I discovered:
+- **Database credentials** in plain text
+- **Discord webhook URLs** with server tokens
 - **Admin backdoors** hidden in "protected" scripts
 - **API keys** for external services
-- **Player data harvesting** mechanisms
+- **Player data collection** mechanisms
 
-## The Grant System Vulnerability
+## The Fundamental Problem
 
-The core vulnerability lies in FiveM's grant validation system. Server keys provide access to decrypt ANY resource the server has permission for, not just the ones currently in use.
+### Why Both Systems Fail
 
-### Grant Token Structure
-JWT tokens contain all accessible resource IDs:
+**3D Asset Protection:**
+- Centralized key management allows bulk key extraction
+- Over-privileged server keys grant excessive resource access
+- Client-side decryption enables reverse engineering
 
-\`\`\`json
-{
-  "grants": {
-    "113303": "3a53c618abb3c6537b6dfd9ffd26ae63951e789ff8a05a15b435a2efe10caedb",
-    "113299": "1cc4b563fdf86dc0410b59ec46d465b9f140887be9f80a4a9b0f13b03da6e8cb",
-    "57670": "b2b7d212189dcdfd3dbf9d7656c2423934688a5d126e05d97694753bc8263479"
-  }
-}
-\`\`\`
+**Lua Script Protection:**
+- Client-side execution allows runtime interception
+- Bytecode remains accessible during resource loading
+- Standard decompilation tools work on the output
 
 ## Detection and Prevention
 
 ### For Server Owners
-- **Key Rotation**: Regularly rotate server keys (though this won't stop existing key exploitation)
-- **Network Monitoring**: Watch for unusual keymaster API requests
-- **Resource Auditing**: Regularly audit what resources your key has access to
-- **Access Control**: Limit who has access to server configuration files
+- **Accept the Reality**: Current escrow protection is not secure
+- **Server-Side Validation**: Implement critical logic server-side only
+- **Key Management**: Rotate server keys regularly (limited effectiveness)
+- **Access Control**: Restrict server configuration access
 
 ### For Developers
-- **Server-Side Validation**: Never rely solely on client-side or "protected" script validation
-- **Layered Security**: Implement multiple security layers beyond code obfuscation
-- **Key Management**: Consider more sophisticated key derivation systems
-- **Real-Time Protection**: Implement server-side integrity checking
+- **Architectural Security**: Design security into the system from the ground up
+- **Server-Side Logic**: Move sensitive operations away from client-side
+- **Real-Time Monitoring**: Implement runtime integrity checking
+- **Layered Defense**: Don't rely on single protection mechanisms
 
 ## Responsible Disclosure Timeline
 
-- **Discovery**: August 2025
-- **Tool Development**: Completed proof-of-concept automation
-- **Vendor Notification**: Reported to CFX development team
+- **Discovery**: August 2025 (3D tools found publicly, Lua system developed)
+- **Tool Development**: Completed automated Lua decompilation system
+- **Vendor Notification**: Reported findings to CFX development team
 - **Public Disclosure**: This research (awaiting vendor response)
 
 ## Conclusion
 
-This research demonstrates a fundamental flaw in security-through-obscurity approaches. FiveM's escrow system, while sophisticated in its encryption implementation, fails due to:
+This research reveals a troubling security landscape:
 
-1. **Centralized key management** making bulk key extraction possible
-2. **Client-side decryption** allowing reverse engineering
-3. **Over-privileged access** where server keys grant excessive permissions
+**3D Assets**: Protection already completely compromised with tools freely available on public forums.
 
-Real security requires architectural changes, not just stronger obfuscation. The ease with which this protection can be bypassed should serve as a warning to both developers and server owners about the limitations of current FiveM resource protection.
+**Lua Scripts**: Protection easily bypassed with basic automation and freely available decompilation tools.
 
-### Technical Recommendations
+The ease of access to these exploits demonstrates that FiveM's protection systems provide only the illusion of security. The 3D asset tools didn't even require development - they're already being actively used in the community.
 
-For FiveM developers:
-- Implement server-side resource validation
-- Use hardware security modules for key storage
-- Implement per-resource key derivation
-- Add runtime integrity checking
+### Key Takeaways
 
-For the community:
-- Don't rely on escrow protection for critical security
+1. **Security through obscurity fails**: Both protection systems rely on hiding implementation details
+2. **Community knowledge**: Exploits are often already public when you discover them
+3. **False sense of security**: Server owners are paying for protection that doesn't exist
+4. **Need for architectural change**: Real security requires fundamental design changes
+
+### Recommendations
+
+**For the FiveM Community:**
+- Stop relying on escrow protection for security-critical functions
 - Implement proper server-side validation
 - Regular security audits of all resources
-- Understanding that "protected" doesn't mean "secure"
+- Understand that "protected" and "secure" are not the same thing
 
-The tools and techniques described here highlight the importance of proper security architecture over security theater.
-		`
+**For CFX.re:**
+- Acknowledge the fundamental flaws in current protection systems
+- Consider server-side execution models for sensitive operations
+- Implement hardware security modules for key management
+- Focus on architectural security over obfuscation
+
+The tools and techniques described here highlight why proper security architecture must replace security theater. Protection systems that can be bypassed by publicly available tools downloaded from forums offer no real security value.`
 	}
 ];
 

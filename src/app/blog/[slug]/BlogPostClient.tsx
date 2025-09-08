@@ -312,7 +312,7 @@ export default function BlogPostClient({ post }: Props) {
 						<MarkdownContent content={post.content} />
 					</article>
 
-					<footer className='pt-8 border-t border-neutral-800'>
+					<footer className='pt-8 pb-32 border-t border-neutral-800'>
 						<div className='bg-yellow-900/20 border border-yellow-600/30 rounded-lg p-4'>
 							<div className='flex items-start gap-3'>
 								<ExternalLink className='w-5 h-5 text-yellow-400 flex-shrink-0 mt-0.5' />

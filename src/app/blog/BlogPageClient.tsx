@@ -61,7 +61,7 @@ export default function BlogPage() {
 							const categoryColor = getCategoryColor(post.category);
 
 							return (
-								<motion.article key={post.slug} variants={itemVariants} transition={{ duration: 0.6, ease: 'easeOut', delay: index * 0.1 }} whileHover={{ y: -4 }} className='group relative'>
+								<motion.article key={post.slug} variants={itemVariants} transition={{ duration: 0.6, ease: 'easeOut', delay: index * 0.1 }} className='group relative'>
 									<Link href={`/blog/${post.slug}`} className='block'>
 										<div className='p-6 bg-neutral-900/40 backdrop-blur-sm border border-neutral-700/50 rounded-xl hover:border-neutral-600 transition-all duration-300 relative overflow-hidden'>
 											<div className='absolute inset-0 bg-gradient-to-r from-white/5 to-neutral-300/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300' />

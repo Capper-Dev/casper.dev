@@ -25,7 +25,7 @@ const itemVariants = {
 export default function HomePage() {
 	return (
 		<PageTransition>
-			<div className='h-screen flex items-center justify-center px-6'>
+			<div className='h-screen relative flex items-center justify-center px-6 !overflow-hidden'>
 				<motion.div className='max-w-2xl text-center space-y-8 w-full' variants={containerVariants} initial='hidden' animate='visible'>
 					<motion.div className='space-y-6' variants={itemVariants} transition={{ duration: 0.6, ease: 'easeOut' }}>
 						<motion.h1
