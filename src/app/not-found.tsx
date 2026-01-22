@@ -1,20 +1,26 @@
-import Link from 'next/link';
-import { Home } from 'lucide-react';
+import { Home } from "lucide-react";
+import Link from "next/link";
 
 export default function NotFound() {
 	return (
-		<div className='h-screen flex items-center justify-center px-6'>
-			<div className='text-center space-y-6'>
-				<h1 className='text-8xl font-bold text-neutral-600'>404</h1>
+		<div className="flex h-screen items-center justify-center px-6">
+			<div className="space-y-6 text-center">
+				<h1 className="font-bold text-8xl text-neutral-600">404</h1>
 
-				<div className='space-y-4'>
-					<h2 className='text-2xl font-semibold text-white'>Page Not Found</h2>
-					<p className='text-neutral-400 max-w-md mx-auto'>The page you&apos;re looking for doesn&apos;t exist or has been moved.</p>
+				<div className="space-y-4">
+					<h2 className="font-semibold text-2xl text-white">Page Not Found</h2>
+					<p className="mx-auto max-w-md text-neutral-400">
+						The page you&apos;re looking for doesn&apos;t exist or has been
+						moved.
+					</p>
 				</div>
 
-				<div className='flex flex-col sm:flex-row gap-4 justify-center items-center'>
-					<Link href='/' className='inline-flex items-center gap-2 px-6 py-3 bg-white text-black rounded-lg font-medium hover:bg-neutral-200 transition-colors'>
-						<Home className='w-4 h-4' />
+				<div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+					<Link
+						href="/"
+						className="inline-flex items-center gap-2 rounded-lg bg-white px-6 py-3 font-medium text-black transition-colors hover:bg-neutral-200"
+					>
+						<Home className="h-4 w-4" />
 						Go Home
 					</Link>
 				</div>

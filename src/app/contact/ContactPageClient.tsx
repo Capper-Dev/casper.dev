@@ -1,30 +1,30 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import { Mail, Github, MessageCircle } from 'lucide-react';
-import { PageTransition } from '@/components/layout/PageTransition';
-import Image from 'next/image';
+import { motion } from "framer-motion";
+import { Github, Mail, MessageCircle } from "lucide-react";
+import Image from "next/image";
+import { PageTransition } from "@/components/layout/PageTransition";
 
 const contacts = [
 	{
-		label: 'Email',
-		value: 'casper.truberg@outlook.dk',
-		href: 'mailto:casper.truberg@outlook.dk',
+		label: "Email",
+		value: "casper.truberg@outlook.dk",
+		href: "mailto:casper.truberg@outlook.dk",
 		icon: Mail,
 		isCustomIcon: false,
 	},
 	{
-		label: 'GitHub',
-		value: 'github.com/Capper-Dev',
-		href: 'https://github.com/Capper-Dev',
+		label: "GitHub",
+		value: "github.com/Capper-Dev",
+		href: "https://github.com/Capper-Dev",
 		icon: Github,
 		isCustomIcon: false,
 	},
 	{
-		label: 'Discord',
-		value: 'casper.dev',
-		href: 'https://discord.com/users/casper.dev',
-		icon: '/discord.svg',
+		label: "Discord",
+		value: "casper.dev",
+		href: "https://discord.com/users/casper.dev",
+		icon: "/discord.svg",
 		isCustomIcon: true,
 	},
 ];
@@ -47,53 +47,81 @@ const itemVariants = {
 export default function ContactPage() {
 	return (
 		<PageTransition>
-			<div className='h-screen flex flex-col justify-center max-w-2xl mx-auto px-6 overflow-hidden'>
-				<motion.div className='space-y-8' variants={containerVariants} initial='hidden' animate='visible'>
-					<motion.div className='space-y-2 text-center' variants={itemVariants} transition={{ duration: 0.6, ease: 'easeOut' }}>
-						<h1 className='text-3xl font-bold bg-gradient-to-r from-white to-neutral-300 bg-clip-text text-transparent'>Get In Touch</h1>
-						<p className='text-neutral-400'>I&apos;m always interested in new opportunities and conversations</p>
+			<div className="mx-auto flex h-screen max-w-2xl flex-col justify-center overflow-hidden px-6">
+				<motion.div
+					className="space-y-8"
+					variants={containerVariants}
+					initial="hidden"
+					animate="visible"
+				>
+					<motion.div
+						className="space-y-2 text-center"
+						variants={itemVariants}
+						transition={{ duration: 0.6, ease: "easeOut" }}
+					>
+						<h1 className="bg-gradient-to-r from-white to-neutral-300 bg-clip-text font-bold text-3xl text-transparent">
+							Get In Touch
+						</h1>
+						<p className="text-neutral-400">
+							I&apos;m always interested in new opportunities and conversations
+						</p>
 					</motion.div>
 
-					<motion.div className='space-y-3' variants={containerVariants}>
+					<motion.div className="space-y-3" variants={containerVariants}>
 						{contacts.map((contact, index) => (
 							<motion.a
 								key={contact.label}
 								href={contact.href}
-								target='_blank'
-								rel='noopener noreferrer'
+								target="_blank"
+								rel="noopener noreferrer"
 								variants={itemVariants}
-								transition={{ duration: 0.6, ease: 'easeOut', delay: index * 0.1 }}
-								className='flex items-center gap-4 p-4 bg-neutral-900/30 border border-neutral-800 rounded-xl hover:bg-neutral-900/50 hover:border-neutral-700 transition-all duration-300 group relative overflow-hidden'
+								transition={{
+									duration: 0.6,
+									ease: "easeOut",
+									delay: index * 0.1,
+								}}
+								className="group relative flex items-center gap-4 overflow-hidden rounded-xl border border-neutral-800 bg-neutral-900/30 p-4 transition-all duration-300 hover:border-neutral-700 hover:bg-neutral-900/50"
 							>
-								<div className='absolute inset-0 bg-gradient-to-r from-white/5 to-neutral-300/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300' />
+								<div className="absolute inset-0 bg-gradient-to-r from-white/5 to-neutral-300/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
-								<div className='relative z-10'>
+								<div className="relative z-10">
 									{contact.isCustomIcon ? (
-										<Image src={contact.icon as string} alt={`${contact.label} icon`} width={20} height={20} className='w-5 h-5 text-neutral-400 filter brightness-0 invert opacity-60' />
+										<Image
+											src={contact.icon as string}
+											alt={`${contact.label} icon`}
+											width={20}
+											height={20}
+											className="h-5 w-5 text-neutral-400 opacity-60 brightness-0 invert filter"
+										/>
 									) : (
-										<contact.icon className='w-5 h-5 text-neutral-400' />
+										<contact.icon className="h-5 w-5 text-neutral-400" />
 									)}
 								</div>
 
-								<div className='relative z-10'>
-									<div className='font-medium'>{contact.label}</div>
-									<div className='text-sm text-neutral-400'>{contact.value}</div>
+								<div className="relative z-10">
+									<div className="font-medium">{contact.label}</div>
+									<div className="text-neutral-400 text-sm">
+										{contact.value}
+									</div>
 								</div>
 							</motion.a>
 						))}
 					</motion.div>
 
 					<motion.div
-						className='p-4 bg-gradient-to-r from-white/5 to-neutral-300/5 border border-neutral-700/50 rounded-xl relative overflow-hidden'
+						className="relative overflow-hidden rounded-xl border border-neutral-700/50 bg-gradient-to-r from-white/5 to-neutral-300/5 p-4"
 						variants={itemVariants}
-						transition={{ duration: 0.6, ease: 'easeOut', delay: 0.4 }}
+						transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
 					>
-						<div className='flex items-start gap-3'>
-							<MessageCircle className='w-5 h-5 text-neutral-300 mt-0.5 flex-shrink-0' />
+						<div className="flex items-start gap-3">
+							<MessageCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-neutral-300" />
 							<div>
-								<h3 className='font-semibold mb-2'>Currently</h3>
-								<p className='text-neutral-400 text-sm leading-relaxed'>
-									Open to interesting projects, collaborations, and opportunities to learn. Whether you want to chat about code, discuss a project idea, or just say hi— I&apos;d love to hear from you!
+								<h3 className="mb-2 font-semibold">Currently</h3>
+								<p className="text-neutral-400 text-sm leading-relaxed">
+									Open to interesting projects, collaborations, and
+									opportunities to learn. Whether you want to chat about code,
+									discuss a project idea, or just say hi— I&apos;d love to hear
+									from you!
 								</p>
 							</div>
 						</div>

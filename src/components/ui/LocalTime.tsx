@@ -1,19 +1,19 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import { Clock } from 'lucide-react';
+import { Clock } from "lucide-react";
+import { useEffect, useState } from "react";
 
 export function LocalTime() {
-	const [time, setTime] = useState<string>('');
+	const [time, setTime] = useState<string>("");
 
 	useEffect(() => {
 		const updateTime = () => {
 			const now = new Date();
-			const timeString = now.toLocaleTimeString('en-DK', {
-				timeZone: 'Europe/Copenhagen',
+			const timeString = now.toLocaleTimeString("en-DK", {
+				timeZone: "Europe/Copenhagen",
 				hour12: false,
-				hour: '2-digit',
-				minute: '2-digit',
+				hour: "2-digit",
+				minute: "2-digit",
 			});
 			setTime(timeString);
 		};
@@ -25,9 +25,9 @@ export function LocalTime() {
 	}, []);
 
 	return (
-		<div className='flex items-center justify-center gap-2 w-32 px-4 py-2 bg-neutral-900/30 border border-neutral-800 rounded-full backdrop-blur-sm'>
-			<Clock className='w-4 h-4 text-neutral-400' strokeWidth={1.5} />
-			<span className='text-neutral-300 font-mono text-sm'>{time}</span>
+		<div className="flex w-32 items-center justify-center gap-2 rounded-full border border-neutral-800 bg-neutral-900/30 px-4 py-2 backdrop-blur-sm">
+			<Clock className="h-4 w-4 text-neutral-400" strokeWidth={1.5} />
+			<span className="font-mono text-neutral-300 text-sm">{time}</span>
 		</div>
 	);
 }

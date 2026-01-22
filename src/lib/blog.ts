@@ -4,20 +4,28 @@ export interface BlogPost {
 	description: string;
 	date: string;
 	readTime: string;
-	category: 'Security' | 'Research' | 'Tutorial';
+	category: "Security" | "Research" | "Tutorial";
 	tags: string[];
 	content: string;
 }
 
 const blogPosts: BlogPost[] = [
 	{
-		slug: 'fivem-lua-deobfuscation',
-		title: 'Bypassing FiveM\'s Protection Systems: 3D Assets vs Lua Scripts',
-		description: 'A comprehensive analysis of FiveM\'s dual protection systems - discovering publicly available tools that bypass ChaCha20 encryption for 3D assets and developing my own automated bytecode dumping system for Lua scripts.',
-		date: '2025-08-06',
-		readTime: '15 min read',
-		category: 'Security',
-		tags: ['FiveM', 'Reverse Engineering', 'Lua', 'ChaCha20', 'Cryptography', 'Bytecode'],
+		slug: "fivem-lua-deobfuscation",
+		title: "Bypassing FiveM's Protection Systems: 3D Assets vs Lua Scripts",
+		description:
+			"A comprehensive analysis of FiveM's dual protection systems - discovering publicly available tools that bypass ChaCha20 encryption for 3D assets and developing my own automated bytecode dumping system for Lua scripts.",
+		date: "2025-08-06",
+		readTime: "15 min read",
+		category: "Security",
+		tags: [
+			"FiveM",
+			"Reverse Engineering",
+			"Lua",
+			"ChaCha20",
+			"Cryptography",
+			"Bytecode",
+		],
 		content: `# Bypassing FiveM's Protection Systems: 3D Assets vs Lua Scripts
 
 ## Introduction
@@ -253,14 +261,16 @@ The ease of access to these exploits demonstrates that FiveM's protection system
 - Implement hardware security modules for key management
 - Focus on architectural security over obfuscation
 
-The tools and techniques described here highlight why proper security architecture must replace security theater. Protection systems that can be bypassed by publicly available tools downloaded from forums offer no real security value.`
-	}
+The tools and techniques described here highlight why proper security architecture must replace security theater. Protection systems that can be bypassed by publicly available tools downloaded from forums offer no real security value.`,
+	},
 ];
 
 export function getBlogPosts(): BlogPost[] {
-	return blogPosts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+	return blogPosts.sort(
+		(a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
+	);
 }
 
 export function getBlogPost(slug: string): BlogPost | undefined {
-	return blogPosts.find(post => post.slug === slug);
+	return blogPosts.find((post) => post.slug === slug);
 }

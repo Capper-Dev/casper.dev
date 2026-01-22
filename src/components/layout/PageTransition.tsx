@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 
 interface PageTransitionProps {
 	children: React.ReactNode;
@@ -14,7 +14,7 @@ export function PageTransition({ children }: PageTransitionProps) {
 			exit={{ opacity: 0, y: -20 }}
 			transition={{
 				duration: 0.4,
-				ease: 'easeOut',
+				ease: "easeOut",
 			}}
 		>
 			{children}
