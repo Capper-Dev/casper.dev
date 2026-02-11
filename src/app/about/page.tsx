@@ -4,7 +4,7 @@ import AboutPageClient from "./AboutPageClient";
 export const metadata = genMeta({
 	title: "About",
 	description:
-		"Learn about Casper Truberg, a self-taught hobby programmer from Denmark specializing in React, TypeScript, and Next.js development. Discover my journey and what drives my passion for coding.",
+		"Learn about Casper Truberg, a self-taught developer from Denmark building modern web apps with React, TypeScript, and Next.js.",
 	keywords:
 		"about Casper Truberg, self-taught developer, React developer, TypeScript developer, Next.js developer, hobby programmer, web development journey, Denmark developer",
 	path: "/about",

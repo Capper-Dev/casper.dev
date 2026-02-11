@@ -5,11 +5,14 @@ import { Github, Mail, MessageCircle } from "lucide-react";
 import Image from "next/image";
 import { PageTransition } from "@/components/layout/PageTransition";
 
+const emailUser = "casper.truberg";
+const emailDomain = "outlook.dk";
+
 const contacts = [
 	{
 		label: "Email",
-		value: "casper.truberg@outlook.dk",
-		href: "mailto:casper.truberg@outlook.dk",
+		value: `${emailUser}@${emailDomain}`,
+		href: `mailto:${emailUser}@${emailDomain}`,
 		icon: Mail,
 		isCustomIcon: false,
 	},
@@ -91,6 +94,7 @@ export default function ContactPage() {
 											alt={`${contact.label} icon`}
 											width={20}
 											height={20}
+											loading="eager"
 											className="h-5 w-5 text-neutral-400 opacity-60 brightness-0 invert filter"
 										/>
 									) : (

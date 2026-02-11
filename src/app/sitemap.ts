@@ -1,9 +1,7 @@
 import type { MetadataRoute } from "next";
-import { getBlogPosts } from "@/lib/blog";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-	const baseUrl = "https://casper.dev";
-	const posts = getBlogPosts();
+	const baseUrl = "https://www.casper.dev";
 
 	const staticPages = [
 		{
@@ -31,12 +29,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
 			priority: 0.9,
 		},
 		{
-			url: `${baseUrl}/blog`,
-			lastModified: new Date(),
-			changeFrequency: "weekly" as const,
-			priority: 0.9,
-		},
-		{
 			url: `${baseUrl}/contact`,
 			lastModified: new Date(),
 			changeFrequency: "monthly" as const,
@@ -44,12 +36,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
 		},
 	];
 
-	const blogPages = posts.map((post) => ({
-		url: `${baseUrl}/blog/${post.slug}`,
-		lastModified: new Date(post.date),
-		changeFrequency: "monthly" as const,
-		priority: 0.7,
-	}));
-
-	return [...staticPages, ...blogPages];
+	return [...staticPages];
 }

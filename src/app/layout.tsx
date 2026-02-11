@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-	metadataBase: new URL("https://casper.dev"),
+	metadataBase: new URL("https://www.casper.dev"),
 	title: {
 		default: "casper.dev",
 		template: "%s | casper.dev",
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 		"Self-taught developer building with React, TypeScript, and Next.js",
 	keywords:
 		"hobby programmer, React, TypeScript, Next.js, web development, Casper Truberg, portfolio, developer",
-	authors: [{ name: "Casper Truberg", url: "https://casper.dev" }],
+	authors: [{ name: "Casper Truberg", url: "https://www.casper.dev" }],
 	creator: "Casper Truberg",
 	publisher: "Casper Truberg",
 	formatDetection: {
@@ -42,6 +42,13 @@ export default function RootLayout({
 	return (
 		<html lang="en" data-scroll-behavior="smooth">
 			<head>
+				<meta charSet="utf-8" />
+				<link rel="preconnect" href="https://cdn.jsdelivr.net" />
+				<link
+					rel="preconnect"
+					href="https://cdn.jsdelivr.net"
+					crossOrigin="anonymous"
+				/>
 				<PersonSchema />
 				<WebsiteSchema />
 			</head>

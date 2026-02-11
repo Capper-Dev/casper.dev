@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { BookOpen, Code, House, LayoutGrid, Mail, User } from "lucide-react";
+import { Code, House, LayoutGrid, Mail, User } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -10,7 +10,6 @@ const navItems = [
 	{ name: "About", href: "/about", icon: User },
 	{ name: "Experience", href: "/experience", icon: Code },
 	{ name: "Projects", href: "/projects", icon: LayoutGrid },
-	{ name: "Blog", href: "/blog", icon: BookOpen },
 	{ name: "Contact", href: "/contact", icon: Mail },
 ];
 
@@ -26,9 +25,7 @@ export function Footer() {
 		>
 			<div className="flex gap-2 rounded-2xl border border-white/10 bg-black/40 p-2 shadow-2xl shadow-black/50 backdrop-blur-xl">
 				{navItems.map((item, index) => {
-					const isActive =
-						pathname === item.href ||
-						(item.href === "/blog" && pathname.startsWith("/blog"));
+					const isActive = pathname === item.href;
 					const Icon = item.icon;
 
 					return (

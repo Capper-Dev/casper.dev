@@ -74,13 +74,9 @@ function ProjectImage({
 			<Image
 				src={project.image}
 				alt={`${project.title} preview`}
-				fill={true}
-				className={`transition-all duration-300 hover:scale-105${imageLoaded ? "opacity-100" : "opacity-0"}
-				`}
-				style={{
-					objectFit: "cover",
-					objectPosition: "center",
-				}}
+				width={800}
+				height={400}
+				className={`h-full w-full object-cover transition-all duration-300 hover:scale-105 ${imageLoaded ? "opacity-100" : "opacity-0"}`}
 				sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
 				quality={80}
 				priority={true}
@@ -136,9 +132,9 @@ export default function ProjectsPage() {
 											href={project.github}
 											target="_blank"
 											rel="noopener noreferrer"
-											aria-label="View GitHub repository"
 										>
 											<Github className="h-4 w-4 text-neutral-400 transition-colors hover:text-white" />
+											<span className="sr-only">View GitHub repository</span>
 										</Link>
 									</div>
 								)}

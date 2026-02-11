@@ -4,7 +4,7 @@ import ProjectsPageClient from "./ProjectsPageClient";
 export const metadata = genMeta({
 	title: "Projects",
 	description:
-		"Check out my portfolio of web development projects built with React, TypeScript, Next.js, and modern web technologies. From personal portfolio to client websites.",
+		"Web development projects by Casper Truberg, built with React, TypeScript, Next.js, and modern technologies.",
 	keywords:
 		"Casper Truberg projects, React projects, TypeScript projects, Next.js portfolio, web development portfolio, GitHub projects, FiveM website, portfolio website",
 	path: "/projects",

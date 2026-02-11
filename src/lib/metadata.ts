@@ -7,9 +7,10 @@ interface PageMetadata {
 	ogImage?: string;
 	noIndex?: boolean;
 	path?: string;
+	noSuffix?: boolean;
 }
 
-const baseUrl = "https://casper.dev";
+const baseUrl = "https://www.casper.dev";
 
 export function generateMetadata({
 	title,
@@ -18,8 +19,9 @@ export function generateMetadata({
 	ogImage = "/og-image.png",
 	noIndex = false,
 	path = "",
+	noSuffix = false,
 }: PageMetadata): Metadata {
-	const fullTitle = title === "casper.dev" ? title : `${title} | casper.dev`;
+	const fullTitle = noSuffix ? title : `${title} | casper.dev`;
 	const url = `${baseUrl}${path}`;
 
 	return {

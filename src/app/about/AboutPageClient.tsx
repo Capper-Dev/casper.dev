@@ -144,6 +144,7 @@ export default function AboutPage() {
 											alt={tech.name}
 											width={32}
 											height={32}
+											loading="eager"
 											className="object-contain"
 										/>
 									</div>

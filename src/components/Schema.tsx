@@ -4,7 +4,7 @@ export function PersonSchema() {
 		"@type": "Person",
 		name: "Casper Truberg",
 		jobTitle: "Self-Taught Developer",
-		url: "https://casper.dev",
+		url: "https://www.casper.dev",
 		sameAs: ["https://github.com/Capper-Dev"],
 		knowsAbout: [
 			"React",
@@ -32,7 +32,7 @@ export function WebsiteSchema() {
 		"@context": "https://schema.org",
 		"@type": "WebSite",
 		name: "casper.dev",
-		url: "https://casper.dev",
+		url: "https://www.casper.dev",
 		description:
 			"Portfolio of Casper Truberg, a self-taught developer building modern web applications.",
 		author: {
