@@ -12,21 +12,18 @@
 		"knip:production": "knip --production"
 	},
 	"dependencies": {
-		"@biomejs/biome": "^2.3.11",
 		"framer-motion": "^12.23.9",
-		"lucide-react": "^0.525.0",
-		"next": "15.4.4",
-		"react": "19.1.0",
-		"react-dom": "19.1.0"
+		"lucide-react": "^0.563.0",
+		"next": "16.1.6",
+		"react": "19.2.4",
+		"react-dom": "19.2.4"
 	},
 	"devDependencies": {
-		"@eslint/eslintrc": "^3",
+		"@biomejs/biome": "^2.3.11",
 		"@tailwindcss/postcss": "^4",
-		"@types/node": "^20",
+		"@types/node": "^25.2.3",
 		"@types/react": "^19",
 		"@types/react-dom": "^19",
-		"eslint": "^9",
-		"eslint-config-next": "15.4.4",
 		"knip": "^5.62.0",
 		"tailwindcss": "^4",
 		"typescript": "^5"
