@@ -9,6 +9,20 @@ const nextConfig: NextConfig = {
 	compress: true,
 	poweredByHeader: false,
 	reactStrictMode: true,
+
+	async headers() {
+		return [
+			{
+				source: "/:path*",
+				headers: [
+					{
+						key: "Content-Signal",
+						value: "search=yes, ai-train=no",
+					},
+				],
+			},
+		];
+	},
 };
 
 export default nextConfig;
