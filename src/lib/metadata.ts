@@ -16,13 +16,15 @@ export function generateMetadata({
 	title,
 	description,
 	keywords,
-	ogImage = "/og-image.png",
+	ogImage = "/opengraph-image",
 	noIndex = false,
 	path = "",
 	noSuffix = false,
 }: PageMetadata): Metadata {
 	const fullTitle = noSuffix ? title : `${title} | casper.dev`;
 	const url = `${baseUrl}${path}`;
+
+	const ogImageUrl = `${baseUrl}${ogImage}`;
 
 	return {
 		title: fullTitle,
@@ -31,21 +33,30 @@ export function generateMetadata({
 		authors: [{ name: "Casper Truberg" }],
 		creator: "Casper Truberg",
 		publisher: "Casper Truberg",
-		robots: noIndex ? "noindex,nofollow" : "index,follow",
+		robots: noIndex
+			? { index: false, follow: false }
+			: { index: true, follow: true, googleBot: { index: true, follow: true } },
 		openGraph: {
 			type: "website",
 			url,
 			title: fullTitle,
 			description,
 			siteName: "casper.dev",
+			locale: "en_US",
 			images: [
 				{
-					url: `${baseUrl}${ogImage}`,
+					url: ogImageUrl,
 					width: 1200,
 					height: 630,
-					alt: description,
+					alt: `${fullTitle} - casper.dev`,
 				},
 			],
+		},
+		twitter: {
+			card: "summary_large_image",
+			title: fullTitle,
+			description,
+			images: [ogImageUrl],
 		},
 		alternates: {
 			canonical: url,

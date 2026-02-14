@@ -3,8 +3,11 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { type ComponentType, useEffect, useState } from "react";
+import { NoirExperience } from "@/components/designs/noir/NoirExperience";
+import { TerminalExperience } from "@/components/designs/terminal/TerminalExperience";
 import { PageTransition } from "@/components/layout/PageTransition";
 import { DrizzleIcon } from "@/components/ui/Icons";
+import { useDesign } from "@/lib/design-context";
 
 interface IconComponentProps {
 	className?: string;
@@ -149,7 +152,7 @@ const itemVariants = {
 	visible: { opacity: 1, y: 0 },
 };
 
-export default function ExperiencePage() {
+function GlassExperience() {
 	return (
 		<PageTransition>
 			{skills.map((skill, index) => (
@@ -230,4 +233,11 @@ export default function ExperiencePage() {
 			</div>
 		</PageTransition>
 	);
+}
+
+export default function ExperiencePage() {
+	const { design } = useDesign();
+	if (design === "terminal") return <TerminalExperience />;
+	if (design === "noir") return <NoirExperience />;
+	return <GlassExperience />;
 }

@@ -5,7 +5,10 @@ import { Github, Smartphone } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { NoirProjects } from "@/components/designs/noir/NoirProjects";
+import { TerminalProjects } from "@/components/designs/terminal/TerminalProjects";
 import { PageTransition } from "@/components/layout/PageTransition";
+import { useDesign } from "@/lib/design-context";
 
 const projects = [
 	{
@@ -89,7 +92,7 @@ function ProjectImage({
 	);
 }
 
-export default function ProjectsPage() {
+function GlassProjects() {
 	return (
 		<PageTransition>
 			<div className="mx-auto flex h-screen max-w-5xl flex-col justify-center overflow-hidden px-6">
@@ -186,4 +189,11 @@ export default function ProjectsPage() {
 			</div>
 		</PageTransition>
 	);
+}
+
+export default function ProjectsPage() {
+	const { design } = useDesign();
+	if (design === "terminal") return <TerminalProjects />;
+	if (design === "noir") return <NoirProjects />;
+	return <GlassProjects />;
 }

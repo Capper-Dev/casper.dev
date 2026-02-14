@@ -1,7 +1,8 @@
+import type { Metadata } from "next";
 import { generateMetadata as genMeta } from "@/lib/metadata";
 import ContactPageClient from "./ContactPageClient";
 
-export const metadata = genMeta({
+export const metadata: Metadata = genMeta({
 	title: "Contact",
 	description:
 		"Get in touch with Casper Truberg. Open to projects, collaborations, and opportunities. Reach out via email, GitHub, or Discord.",

@@ -3,9 +3,12 @@
 import { motion } from "framer-motion";
 import { ArrowRight, MapPin } from "lucide-react";
 import Link from "next/link";
+import { NoirHome } from "@/components/designs/noir/NoirHome";
+import { TerminalHome } from "@/components/designs/terminal/TerminalHome";
 import { PageTransition } from "@/components/layout/PageTransition";
 import { CyclingText } from "@/components/ui/CyclingText";
 import { LocalTime } from "@/components/ui/LocalTime";
+import { useDesign } from "@/lib/design-context";
 
 const containerVariants = {
 	hidden: { opacity: 0 },
@@ -22,7 +25,7 @@ const itemVariants = {
 	visible: { opacity: 1, y: 0 },
 };
 
-export default function HomePage() {
+function GlassHome() {
 	return (
 		<PageTransition>
 			<div className="!overflow-hidden relative flex h-screen items-center justify-center px-6">
@@ -113,4 +116,11 @@ export default function HomePage() {
 			</div>
 		</PageTransition>
 	);
+}
+
+export default function HomePage() {
+	const { design } = useDesign();
+	if (design === "terminal") return <TerminalHome />;
+	if (design === "noir") return <NoirHome />;
+	return <GlassHome />;
 }

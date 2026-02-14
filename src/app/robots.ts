@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
 			allow: "/",
 			disallow: ["/private/", "/admin/"],
 		},
-		sitemap: "https://casper.dev/sitemap.xml",
+		sitemap: "https://www.casper.dev/sitemap.xml",
 	};
 }

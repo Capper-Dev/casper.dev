@@ -1,7 +1,8 @@
+import type { Metadata } from "next";
 import { generateMetadata as genMeta } from "@/lib/metadata";
 import ProjectsPageClient from "./ProjectsPageClient";
 
-export const metadata = genMeta({
+export const metadata: Metadata = genMeta({
 	title: "Projects",
 	description:
 		"Web development projects by Casper Truberg, built with React, TypeScript, Next.js, and modern technologies.",

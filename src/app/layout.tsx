@@ -1,8 +1,9 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { Footer } from "@/components/layout/Footer";
+import { DesignShell } from "@/components/layout/DesignShell";
 import { PersonSchema, WebsiteSchema } from "@/components/Schema";
+import { DesignProvider } from "@/lib/design-context";
 
 const geistSans = Geist({
 	variable: "--font-geist-sans",
@@ -15,6 +16,12 @@ const geistMono = Geist_Mono({
 	subsets: ["latin"],
 	display: "swap",
 });
+
+export const viewport: Viewport = {
+	width: "device-width",
+	initialScale: 1,
+	themeColor: "#000000",
+};
 
 export const metadata: Metadata = {
 	metadataBase: new URL("https://www.casper.dev"),
@@ -32,6 +39,32 @@ export const metadata: Metadata = {
 	formatDetection: {
 		telephone: false,
 	},
+	openGraph: {
+		type: "website",
+		siteName: "casper.dev",
+		url: "https://www.casper.dev",
+		locale: "en_US",
+		images: [
+			{
+				url: "/opengraph-image",
+				width: 1200,
+				height: 630,
+				alt: "casper.dev - Casper Truberg's portfolio",
+			},
+		],
+	},
+	twitter: {
+		card: "summary_large_image",
+		images: ["/opengraph-image"],
+	},
+	robots: {
+		index: true,
+		follow: true,
+		googleBot: {
+			index: true,
+			follow: true,
+		},
+	},
 };
 
 export default function RootLayout({
@@ -40,25 +73,23 @@ export default function RootLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<html lang="en" data-scroll-behavior="smooth">
+		<html lang="en">
 			<head>
-				<meta charSet="utf-8" />
 				<link rel="preconnect" href="https://cdn.jsdelivr.net" />
 				<link
 					rel="preconnect"
 					href="https://cdn.jsdelivr.net"
 					crossOrigin="anonymous"
 				/>
-				<PersonSchema />
-				<WebsiteSchema />
 			</head>
 			<body
-				className={`${geistSans.variable} ${geistMono.variable} relative h-screen bg-black text-white antialiased`}
+				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
 			>
-				<div className="fixed inset-0 -z-10 bg-gradient-to-br from-neutral-900 via-black to-neutral-900" />
-
-				<Footer />
-				<main className="relative z-10 h-screen pb-32">{children}</main>
+				<PersonSchema />
+				<WebsiteSchema />
+				<DesignProvider>
+					<DesignShell>{children}</DesignShell>
+				</DesignProvider>
 			</body>
 		</html>
 	);

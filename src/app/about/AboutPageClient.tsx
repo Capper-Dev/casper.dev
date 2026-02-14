@@ -3,7 +3,10 @@
 import { motion } from "framer-motion";
 import { Code2, Heart, Lightbulb } from "lucide-react";
 import Image from "next/image";
+import { NoirAbout } from "@/components/designs/noir/NoirAbout";
+import { TerminalAbout } from "@/components/designs/terminal/TerminalAbout";
 import { PageTransition } from "@/components/layout/PageTransition";
+import { useDesign } from "@/lib/design-context";
 
 const containerVariants = {
 	hidden: { opacity: 0 },
@@ -47,7 +50,7 @@ const technologies = [
 	},
 ];
 
-export default function AboutPage() {
+function GlassAbout() {
 	return (
 		<PageTransition>
 			<div className="mx-auto flex h-screen max-w-3xl flex-col justify-center overflow-hidden px-6">
@@ -157,4 +160,11 @@ export default function AboutPage() {
 			</div>
 		</PageTransition>
 	);
+}
+
+export default function AboutPage() {
+	const { design } = useDesign();
+	if (design === "terminal") return <TerminalAbout />;
+	if (design === "noir") return <NoirAbout />;
+	return <GlassAbout />;
 }

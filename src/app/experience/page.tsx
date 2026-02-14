@@ -1,7 +1,8 @@
+import type { Metadata } from "next";
 import { generateMetadata as genMeta } from "@/lib/metadata";
 import ExperiencePageClient from "./ExperiencePageClient";
 
-export const metadata = genMeta({
+export const metadata: Metadata = genMeta({
 	title: "Experience",
 	description:
 		"Casper Truberg's self-taught web development journey. From React and Tailwind CSS frontend to full-stack with Node.js, tRPC, and Supabase.",
