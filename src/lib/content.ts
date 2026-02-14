@@ -140,6 +140,16 @@ export const siteContent = {
 			demo: "https://odessarp.com",
 			isPrivate: true,
 		},
+		{
+			title: "Vecto3D Portfolio",
+			description:
+				"A portfolio website for a 3D designer that specializes in FiveM related models and clothing.",
+			tech: ["Next.js", "TypeScript", "tRPC", "Supabase", "Tailwind"],
+			github: "https://github.com/Capper-Dev",
+			image: "/images/vecto3d.webp",
+			demo: "https://vecto3d.dk",
+			isPrivate: true,
+		},
 	],
 
 	contacts: [

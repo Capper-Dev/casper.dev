@@ -8,29 +8,10 @@ import { useState } from "react";
 import { NoirProjects } from "@/components/designs/noir/NoirProjects";
 import { TerminalProjects } from "@/components/designs/terminal/TerminalProjects";
 import { PageTransition } from "@/components/layout/PageTransition";
+import { siteContent } from "@/lib/content";
 import { useDesign } from "@/lib/design-context";
 
-const projects = [
-	{
-		title: "Portfolio Website",
-		description:
-			"This very website! Built with Next.js 15 and modern animations.",
-		tech: ["Next.js", "TypeScript", "Tailwind", "Framer Motion"],
-		github: "https://github.com/Capper-Dev/casper.dev",
-		image: "/images/portfolio.webp",
-		isPrivate: false,
-	},
-	{
-		title: "Odessa Website",
-		description:
-			"A website for a FiveM server, built with Next.js and tRPC. Private repo, due to made for customer.",
-		tech: ["Next.js", "TypeScript", "tRPC", "Supabase", "Tailwind"],
-		github: "https://github.com/Capper-Dev",
-		image: "/images/odwebsite.webp",
-		demo: "https://odessarp.com",
-		isPrivate: true,
-	},
-];
+const { projects } = siteContent;
 
 const containerVariants = {
 	hidden: { opacity: 0 },
