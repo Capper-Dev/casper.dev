@@ -8,7 +8,7 @@ import {
 	useState,
 } from "react";
 
-export type DesignId = "glass" | "terminal" | "noir";
+export type DesignId = "glass" | "terminal";
 
 interface DesignContextValue {
 	design: DesignId;
@@ -19,13 +19,18 @@ const DesignContext = createContext<DesignContextValue | null>(null);
 
 const STORAGE_KEY = "portfolio-design";
 
+const validDesigns: DesignId[] = [
+	"glass",
+	"terminal",
+];
+
 export function DesignProvider({ children }: { children: ReactNode }) {
 	const [design, setDesignState] = useState<DesignId | null>(null);
 
 	useEffect(() => {
 		const stored = localStorage.getItem(STORAGE_KEY);
-		if (stored === "glass" || stored === "terminal" || stored === "noir") {
-			setDesignState(stored);
+		if (stored && validDesigns.includes(stored as DesignId)) {
+			setDesignState(stored as DesignId);
 		} else {
 			setDesignState("glass");
 		}

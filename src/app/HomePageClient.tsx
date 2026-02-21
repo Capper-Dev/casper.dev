@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import { ArrowRight, MapPin } from "lucide-react";
 import Link from "next/link";
-import { NoirHome } from "@/components/designs/noir/NoirHome";
 import { TerminalHome } from "@/components/designs/terminal/TerminalHome";
 import { PageTransition } from "@/components/layout/PageTransition";
 import { CyclingText } from "@/components/ui/CyclingText";
@@ -121,6 +120,5 @@ function GlassHome() {
 export default function HomePage() {
 	const { design } = useDesign();
 	if (design === "terminal") return <TerminalHome />;
-	if (design === "noir") return <NoirHome />;
 	return <GlassHome />;
 }

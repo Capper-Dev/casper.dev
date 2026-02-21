@@ -8,7 +8,6 @@ import { type DesignId, useDesign } from "@/lib/design-context";
 const designs: { id: DesignId; name: string; color: string }[] = [
 	{ id: "glass", name: "Glass", color: "bg-neutral-400" },
 	{ id: "terminal", name: "Terminal", color: "bg-emerald-400" },
-	{ id: "noir", name: "Noir", color: "bg-red-800" },
 ];
 
 export function DesignSwitcher() {

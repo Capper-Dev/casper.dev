@@ -5,7 +5,6 @@ import { Github, Smartphone } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { NoirProjects } from "@/components/designs/noir/NoirProjects";
 import { TerminalProjects } from "@/components/designs/terminal/TerminalProjects";
 import { PageTransition } from "@/components/layout/PageTransition";
 import { siteContent } from "@/lib/content";
@@ -175,6 +174,5 @@ function GlassProjects() {
 export default function ProjectsPage() {
 	const { design } = useDesign();
 	if (design === "terminal") return <TerminalProjects />;
-	if (design === "noir") return <NoirProjects />;
 	return <GlassProjects />;
 }

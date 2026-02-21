@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import { Code2, Heart, Lightbulb } from "lucide-react";
 import Image from "next/image";
-import { NoirAbout } from "@/components/designs/noir/NoirAbout";
 import { TerminalAbout } from "@/components/designs/terminal/TerminalAbout";
 import { PageTransition } from "@/components/layout/PageTransition";
 import { useDesign } from "@/lib/design-context";
@@ -165,6 +164,5 @@ function GlassAbout() {
 export default function AboutPage() {
 	const { design } = useDesign();
 	if (design === "terminal") return <TerminalAbout />;
-	if (design === "noir") return <NoirAbout />;
 	return <GlassAbout />;
 }

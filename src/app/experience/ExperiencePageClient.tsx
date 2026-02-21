@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { type ComponentType, useEffect, useState } from "react";
-import { NoirExperience } from "@/components/designs/noir/NoirExperience";
 import { TerminalExperience } from "@/components/designs/terminal/TerminalExperience";
 import { PageTransition } from "@/components/layout/PageTransition";
 import { DrizzleIcon } from "@/components/ui/Icons";
@@ -238,6 +237,8 @@ function GlassExperience() {
 export default function ExperiencePage() {
 	const { design } = useDesign();
 	if (design === "terminal") return <TerminalExperience />;
-	if (design === "noir") return <NoirExperience />;
+	if (design === "brutalist") return <BrutalistExperience />;
+	if (design === "neon") return <NeonExperience />;
+	if (design === "paper") return <PaperExperience />;
 	return <GlassExperience />;
 }

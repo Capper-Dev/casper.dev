@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import { Github, Mail, MessageCircle } from "lucide-react";
 import Image from "next/image";
-import { NoirContact } from "@/components/designs/noir/NoirContact";
 import { TerminalContact } from "@/components/designs/terminal/TerminalContact";
 import { PageTransition } from "@/components/layout/PageTransition";
 import { useDesign } from "@/lib/design-context";
@@ -142,6 +141,5 @@ function GlassContact() {
 export default function ContactPage() {
 	const { design } = useDesign();
 	if (design === "terminal") return <TerminalContact />;
-	if (design === "noir") return <NoirContact />;
 	return <GlassContact />;
 }

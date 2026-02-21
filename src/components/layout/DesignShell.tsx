@@ -1,7 +1,6 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { NoirNav } from "@/components/designs/noir/NoirNav";
 import { TerminalNav } from "@/components/designs/terminal/TerminalNav";
 import { useDesign } from "@/lib/design-context";
 import { DesignSwitcher } from "./DesignSwitcher";
@@ -17,17 +16,6 @@ export function DesignShell({ children }: { children: ReactNode }) {
 				<TerminalNav />
 				<DesignSwitcher />
 				<main className="relative z-10 min-h-screen pt-14">{children}</main>
-			</div>
-		);
-	}
-
-	if (design === "noir") {
-		return (
-			<div className="noir-grain relative min-h-screen bg-neutral-950 text-stone-300">
-				<div className="noir-vignette pointer-events-none fixed inset-0 z-40" />
-				<NoirNav />
-				<DesignSwitcher />
-				<main className="relative z-10 min-h-screen pt-16">{children}</main>
 			</div>
 		);
 	}

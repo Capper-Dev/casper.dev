@@ -3,29 +3,26 @@
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
-		"dev": "next dev --turbopack",
+		"dev": "next dev --turbo --port 4000",
 		"build": "next build",
-		"lint": "biome check .",
-		"format": "biome format . --write",
-		"knip": "knip",
-		"knip:fix": "knip --fix",
-		"knip:production": "knip --production"
+		"check": "biome check .",
+		"check:unsafe": "biome check --write --unsafe .",
+		"check:write": "biome check --write ."
 	},
 	"dependencies": {
-		"framer-motion": "^12.23.9",
-		"lucide-react": "^0.563.0",
+		"framer-motion": "^12.34.2",
+		"lucide-react": "^0.575.0",
 		"next": "16.1.6",
 		"react": "19.2.4",
 		"react-dom": "19.2.4"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "^2.3.11",
-		"@tailwindcss/postcss": "^4",
-		"@types/node": "^25.2.3",
-		"@types/react": "^19",
-		"@types/react-dom": "^19",
-		"knip": "^5.62.0",
-		"tailwindcss": "^4",
-		"typescript": "^5"
+		"@biomejs/biome": "^2.4.3",
+		"@tailwindcss/postcss": "^4.2.0",
+		"@types/node": "^25.3.0",
+		"@types/react": "^19.2.14",
+		"@types/react-dom": "^19.2.3",
+		"tailwindcss": "^4.2.0",
+		"typescript": "^5.9.3"
 	}
 }
