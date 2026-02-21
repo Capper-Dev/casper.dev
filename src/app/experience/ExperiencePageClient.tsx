@@ -237,8 +237,5 @@ function GlassExperience() {
 export default function ExperiencePage() {
 	const { design } = useDesign();
 	if (design === "terminal") return <TerminalExperience />;
-	if (design === "brutalist") return <BrutalistExperience />;
-	if (design === "neon") return <NeonExperience />;
-	if (design === "paper") return <PaperExperience />;
 	return <GlassExperience />;
 }
