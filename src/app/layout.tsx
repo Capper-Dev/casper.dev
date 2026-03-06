@@ -1,9 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { DesignShell } from "@/components/layout/DesignShell";
-import { PersonSchema, WebsiteSchema } from "@/components/Schema";
-import { DesignProvider } from "@/lib/design-context";
 
 const geistSans = Geist({
 	variable: "--font-geist-sans",
@@ -20,7 +17,7 @@ const geistMono = Geist_Mono({
 export const viewport: Viewport = {
 	width: "device-width",
 	initialScale: 1,
-	themeColor: "#000000",
+	themeColor: "#0a0a0a",
 };
 
 export const metadata: Metadata = {
@@ -83,13 +80,9 @@ export default function RootLayout({
 				/>
 			</head>
 			<body
-				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+				className={`${geistSans.variable} ${geistMono.variable} bg-[#0a0a0a] text-neutral-100 antialiased`}
 			>
-				<PersonSchema />
-				<WebsiteSchema />
-				<DesignProvider>
-					<DesignShell>{children}</DesignShell>
-				</DesignProvider>
+				{children}
 			</body>
 		</html>
 	);
