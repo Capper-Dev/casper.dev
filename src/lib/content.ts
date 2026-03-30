@@ -8,7 +8,11 @@ export const siteContent = {
 	projects: [
 		{
 			title: "portfolio",
-			demo: "https://www.casper.dev",
+			demo: "https://github.com/Capper-Dev/casper.dev",
+		},
+		{
+			title: "fivem-bundler",
+			demo: "https://github.com/Capper-Dev/fivem-bundler",
 		},
 		{
 			title: "odessa",
