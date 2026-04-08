@@ -33,11 +33,7 @@ export const siteContent = {
 		{
 			title: "gitscope",
 			demo: "https://gitscope.casper.dev",
-		},
-		{
-			title: "hjemis",
-			demo: "https://hjemis.casper.dev",
-		},
+		},	
 		{
 			title: "cfxfinder",
 			demo: "https://cfxfinder.casper.dev",
