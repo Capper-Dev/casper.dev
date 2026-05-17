@@ -31,10 +31,6 @@ export const siteContent = {
 			demo: "https://hidrinks.casper.dev",
 		},
 		{
-			title: "gitscope",
-			demo: "https://gitscope.casper.dev",
-		},	
-		{
 			title: "cfxfinder",
 			demo: "https://cfxfinder.casper.dev",
 		},
